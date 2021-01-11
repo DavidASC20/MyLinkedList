@@ -16,18 +16,40 @@ public class MyLinkedList{
             end.setNext(x);
             x.setPrev(end);
             end = x;
-        }
+        }size++;
+        return true;
     }
     public boolean add(int index, String value){
+        if(index < 0 || index > size){
+            throw new IndexOutOfBoundsException();
+        }
         Node x = new Node(value);
         if(index == 0){
             start.setPrev(x);
             x.setNext(start);
             start = x;
-        }else if(index ==)
+            size++;
+        }else if(index == size){
+            add(value);
+        }else{
+            Node lol = getIndex(index);
+            Node lol2 = lol.getPrev();
+            lol2.setNext(x);
+            x.setPrev(lol2);
+            lol.setPrev(x);
+            x.setNext(lol);
+            size++;
+        }return true;
     }
     // public String get(int index);
     // public String set(int index, String value);
     // public String toString();
     //Any helper method that returns a Node object MUST BE PRIVATE!
-   }
+    private Node getIndex(int index){
+        Node x = start;
+        for(int i = 0; i < index; i++){
+            x = x.getNext();
+        }
+        return x;
+    }
+}
