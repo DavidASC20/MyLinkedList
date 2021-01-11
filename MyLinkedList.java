@@ -87,8 +87,11 @@ public class MyLinkedList{
             Node b = x.getNext();
             a.setNext(b);
             b.setPrev(a);
-        }
+        }size--;
         return x.getData();
+    }
+    public void extend(MyLinkedList other){
+
     }
     private Node getIndex(int index){
         Node x = start;
