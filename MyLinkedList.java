@@ -29,7 +29,7 @@ public class MyLinkedList{
             x.setNext(start);
             start = x;
             size++;
-        }else if(index == size){
+        }else if(index == size - 1){
             add(value);
         }else{
             Node lol = getIndex(index);
@@ -67,6 +67,29 @@ public class MyLinkedList{
         }
         return temp;
     }
+    public String remove(int index){
+        if(index >= size || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+        Node x = getIndex(index);
+        if(size == 1){
+            start = null;
+            end = null;
+        }
+        else if(index == 0){
+            start = x.getNext();
+            start.setPrev(null);
+        }else if(index == size - 1){
+            end = x.getPrev();
+            end.setNext(null);
+        }else{
+            Node a = x.getPrev();
+            Node b = x.getNext();
+            a.setNext(b);
+            b.setPrev(a);
+        }
+        return x.getData();
+    }
     private Node getIndex(int index){
         Node x = start;
         for(int i = 0; i < index; i++){
@@ -74,4 +97,5 @@ public class MyLinkedList{
         }
         return x;
     }
+    
 }
