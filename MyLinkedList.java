@@ -54,10 +54,19 @@ public class MyLinkedList{
             throw new IndexOutOfBoundsException();
         }
         Node x = getIndex(index);
+        String lol = x.getData();
         x.setData(value);
-        return value;
+        return lol;
     }
-    // public String toString();
+    public String toString(){
+        String temp = "";
+        Node x = start;
+        for(int i = 0; i < size; i++){
+            temp += x.getData();
+            x = x.getNext();
+        }
+        return temp;
+    }
     private Node getIndex(int index){
         Node x = start;
         for(int i = 0; i < index; i++){
